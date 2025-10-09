@@ -1,5 +1,5 @@
 "use client";
-
+import React from 'react';
 import {
   Activity,
   AlertTriangle,
@@ -127,9 +127,20 @@ function CasesTable({ cases }: { cases: FraudCase[] }) {
 }
 
 export default function FraudesPage() {
-  const highRiskCases = fraudCases.filter((c) => c.risk === "Alto Risco");
-  const pendingCases = fraudCases.filter((c) => c.status === "Pendente" || c.status === 'Em Análise');
-  const resolvedCases = fraudCases.filter((c) => c.status === "Resolvido");
+  const [activeTab, setActiveTab] = React.useState('all');
+
+  const filteredCases = React.useMemo(() => {
+    switch (activeTab) {
+      case 'high-risk':
+        return fraudCases.filter((c) => c.risk === "Alto Risco");
+      case 'pending':
+        return fraudCases.filter((c) => c.status === "Pendente" || c.status === 'Em Análise');
+      case 'resolved':
+        return fraudCases.filter((c) => c.status === "Resolvido");
+      default:
+        return fraudCases;
+    }
+  }, [activeTab]);
 
   return (
     <div className="grid flex-1 items-start gap-4">
@@ -186,7 +197,7 @@ export default function FraudesPage() {
             </CardContent>
           </Card>
         </div>
-        <Tabs defaultValue="all">
+        <Tabs defaultValue="all" onValueChange={setActiveTab} value={activeTab}>
           <div className="flex items-center">
             <TabsList>
               <TabsTrigger value="all">Todos</TabsTrigger>
@@ -224,17 +235,8 @@ export default function FraudesPage() {
               <AnomalyDetector />
             </div>
           </div>
-          <TabsContent value="all">
-            <CasesTable cases={fraudCases} />
-          </TabsContent>
-          <TabsContent value="high-risk">
-            <CasesTable cases={highRiskCases} />
-          </TabsContent>
-          <TabsContent value="pending">
-            <CasesTable cases={pendingCases} />
-          </TabsContent>
-          <TabsContent value="resolved">
-            <CasesTable cases={resolvedCases} />
+          <TabsContent value={activeTab}>
+            <CasesTable cases={filteredCases} />
           </TabsContent>
         </Tabs>
       </div>
