@@ -3,11 +3,55 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AreaChart, Bot, Building, Calendar, Check, Satellite, Upload, Wind, Map } from "lucide-react";
+import { AreaChart, Bot, Building, Calendar, Check, Satellite, Upload, Wind, Map, ArrowRight, MapPin, AlertTriangle, TrendingUp, Home, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
+const detectedChanges = [
+    {
+        id: '1',
+        type: 'Ampliação Não Declarada',
+        confidence: 94,
+        address: 'Rua das Palmeiras, 245 - Jardim Primavera',
+        coords: '-23.5505, -46.6333',
+        date: '15/01/2024',
+        description: 'Ampliação de aproximadamente 85m² detectada nos fundos da propriedade. Construção não consta nos registros municipais.',
+        areaChange: 85,
+        estimatedValue: 127500,
+        icon: TrendingUp,
+        variant: 'destructive'
+    },
+    {
+        id: '2',
+        type: 'Construção Nova',
+        confidence: 87,
+        address: 'Av. Paulista, 1850 - Bela Vista',
+        coords: '-23.5613, -46.6565',
+        date: '12/01/2024',
+        description: 'Nova edificação identificada. Estrutura de dois pavimentos com aproximadamente 220m².',
+        areaChange: 220,
+        estimatedValue: 380000,
+        icon: Home,
+        variant: 'default'
+    },
+    {
+        id: '3',
+        type: 'Demolição Parcial',
+        confidence: 91,
+        address: 'Rua dos Ipês, 89 - Vila Verde',
+        coords: '-23.5421, -46.6234',
+        date: '10/01/2024',
+        description: 'Demolição parcial detectada na ala leste do imóvel. Redução significativa da área construída.',
+        areaChange: -45,
+        estimatedValue: -65000,
+        icon: Trash2,
+        variant: 'secondary'
+    },
+];
+
 
 export default function GeorreferenciamentoPage() {
   const [analysisState, setAnalysisState] = useState<"idle" | "loading" | "success">("idle");
@@ -19,8 +63,6 @@ export default function GeorreferenciamentoPage() {
     }, 2000);
   };
   
-  const currentImage = PlaceHolderImages.find(img => img.id === 'current-image');
-
   return (
     <div className="space-y-6">
       <Tabs defaultValue="analise">
@@ -80,6 +122,46 @@ export default function GeorreferenciamentoPage() {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+        <TabsContent value="resultados">
+            <div className="space-y-4">
+                {detectedChanges.map(change => (
+                     <Card key={change.id} className="transition-shadow duration-300 hover:shadow-md">
+                        <CardContent className="p-4 grid md:grid-cols-4 items-center gap-4">
+                            <div className="md:col-span-3 space-y-2">
+                                <div className="flex items-center gap-4">
+                                     <Badge variant={change.variant as any} className="flex items-center gap-1.5">
+                                        {change.variant === 'destructive' ? <AlertTriangle className="h-3.5 w-3.5" /> : <change.icon className="h-3.5 w-3.5" />}
+                                        {change.type}
+                                    </Badge>
+                                    <p className="text-sm text-muted-foreground">Confiança: {change.confidence}%</p>
+                                </div>
+                                <h3 className="font-semibold text-lg">{change.address}</h3>
+                                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                                    <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> {change.coords}</span>
+                                    <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {change.date}</span>
+                                </div>
+                                <p className="text-sm">{change.description}</p>
+                                <div className="flex items-center gap-4 text-sm font-medium">
+                                    <span>Variação de área: <span className={cn(change.areaChange > 0 ? "text-success" : "text-destructive")}>{change.areaChange > 0 ? '+' : ''}{change.areaChange}m²</span></span>
+                                    <span>Valor estimado: <span className={cn(change.estimatedValue > 0 ? "text-success" : "text-destructive")}>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(change.estimatedValue)}</span></span>
+                                </div>
+                            </div>
+                             <div className="md:col-span-1 flex justify-end">
+                                <Button variant="outline">
+                                    <ArrowRight className="mr-2 h-4 w-4" /> Investigar
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </TabsContent>
+        <TabsContent value="monitoramento">
+            <Card>
+                <CardHeader><CardTitle>Monitoramento Contínuo</CardTitle></CardHeader>
+                <CardContent><p>Em breve: configure áreas para monitoramento contínuo e receba alertas automáticos.</p></CardContent>
+            </Card>
         </TabsContent>
       </Tabs>
       
