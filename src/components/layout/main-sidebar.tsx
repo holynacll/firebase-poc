@@ -51,7 +51,7 @@ export default function MainSidebar() {
       <div className="flex items-center gap-3 mb-8">
         <Hexagon className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-xl font-bold">FiscalIA</h1>
+          <h1 className="text-xl font-bold">SmartPrefeitura</h1>
           <p className="text-xs text-muted-foreground">Inteligência Fiscal</p>
         </div>
       </div>
