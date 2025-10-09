@@ -100,6 +100,21 @@ export const fraudCases = [
     type: "Omissão de Receita",
     value: "R$ 2.500.000,00",
     date: "2023-10-26",
+    confidence: "97%",
+    description: "Divergência significativa entre faturamento declarado e movimentação financeira.",
+    contribuinte: {
+      nome: "Empresa Fantasma S.A.",
+      doc: "11.222.333/0001-44",
+      endereco: "Endereço Fictício, 123 - Centro",
+      patrimonio: "R$ 50.000,00",
+      renda: "R$ 1.200.000,00",
+      cnae: "8299-7/99 - Outras atividades de serviços prestados principalmente às empresas"
+    },
+    analiseIA: {
+      algoritmo: "DeepFraud AI v2.1",
+      tempo: "3.2 segundos",
+      bases: 5
+    }
   },
   {
     id: "FRA-002",
@@ -109,6 +124,21 @@ export const fraudCases = [
     type: "Crédito Indevido de ICMS",
     value: "R$ 450.000,00",
     date: "2023-10-24",
+    confidence: "85%",
+    description: "Utilização de créditos de ICMS de notas fiscais canceladas.",
+    contribuinte: {
+      nome: "Comércio de Papel Ltda.",
+      doc: "22.333.444/0001-55",
+      endereco: "Rua do Comércio, 456 - Bairro Industrial",
+      patrimonio: "R$ 1.200.000,00",
+      renda: "R$ 8.500.000,00",
+      cnae: "4647-8/01 - Comércio atacadista de artigos de escritório e de papelaria"
+    },
+     analiseIA: {
+      algoritmo: "TaxCredit Validator v1.5",
+      tempo: "1.8 segundos",
+      bases: 3
+    }
   },
   {
     id: "FRA-003",
@@ -118,6 +148,21 @@ export const fraudCases = [
     type: "Subfaturamento",
     value: "R$ 120.000,00",
     date: "2023-10-22",
+    confidence: "78%",
+    description: "Importação de mercadorias com valor declarado abaixo do valor de mercado.",
+    contribuinte: {
+      nome: "Alpha Importações e Exportações Ltda.",
+      doc: "33.444.555/0001-66",
+      endereco: "Avenida das Nações, 789 - Porto Seco",
+      patrimonio: "R$ 5.800.000,00",
+      renda: "R$ 22.000.000,00",
+      cnae: "4693-1/00 - Comércio atacadista de mercadorias em geral, sem predominância de alimentos ou de insumos agropecuários"
+    },
+     analiseIA: {
+      algoritmo: "ImportGuard AI v3.0",
+      tempo: "4.1 segundos",
+      bases: 6
+    }
   },
   {
     id: "FRA-004",
@@ -127,6 +172,21 @@ export const fraudCases = [
     type: "Não Emissão de NFS-e",
     value: "R$ 890.000,00",
     date: "2023-10-21",
+    confidence: "92%",
+    description: "Recebimentos via PIX e cartões de crédito incompatíveis com as notas de serviço emitidas.",
+    contribuinte: {
+      nome: "Serviços Digitais Web ME",
+      doc: "44.555.666/0001-77",
+      endereco: "Rua da Tecnologia, 101 - Hub Digital",
+      patrimonio: "R$ 150.000,00",
+      renda: "R$ 3.200.000,00",
+      cnae: "6209-1/00 - Suporte técnico, manutenção e outros serviços em tecnologia da informação"
+    },
+    analiseIA: {
+      algoritmo: "DeepFraud AI v2.1",
+      tempo: "2.9 segundos",
+      bases: 4
+    }
   },
     {
     id: "FRA-005",
@@ -136,6 +196,21 @@ export const fraudCases = [
     type: "Apropriação Indébita",
     value: "R$ 310.000,00",
     date: "2023-10-20",
+    confidence: "88%",
+    description: "Retenção indevida de tributos de transporte (ICMS-ST).",
+     contribuinte: {
+      nome: "Beta Logística Express Ltda.",
+      doc: "55.666.777/0001-88",
+      endereco: "Rodovia de Transporte, Km 50 - Distrito Logístico",
+      patrimonio: "R$ 3.500.000,00",
+      renda: "R$ 15.000.000,00",
+      cnae: "4930-2/02 - Transporte rodoviário de carga, exceto produtos perigosos e mudanças, intermunicipal, interestadual e internacional"
+    },
+     analiseIA: {
+      algoritmo: "TaxFlow Analyzer v1.9",
+      tempo: "2.2 segundos",
+      bases: 4
+    }
   },
 ];
 

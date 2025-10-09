@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { fraudCaseDetails } from "@/lib/mock-data";
+import { fraudCases } from "@/lib/mock-data";
 import { AlertTriangle, Banknote, Building2, Calendar, Car, Check, ChevronRight, Cpu, Database, File, Home, Landmark, ShieldCheck, User, Users } from "lucide-react";
 
 const riskIndicators = [
@@ -34,7 +34,24 @@ const nextSteps = [
 ];
 
 export default function FraudDetailPage({ params }: { params: { id: string } }) {
-    const { id, type, description, risk, value, detectionDate, confidence } = fraudCaseDetails;
+    const fraudCase = fraudCases.find(c => c.id === params.id);
+
+    if (!fraudCase) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Caso de Fraude não encontrado</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p>O caso de fraude com o ID {params.id} não foi encontrado.</p>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
+    const { id, type, description, risk, value, date, confidence, contribuinte, analiseIA } = fraudCase;
 
     return (
         <div className="space-y-6 animate-fade-in-up">
@@ -67,7 +84,7 @@ export default function FraudDetailPage({ params }: { params: { id: string } }) 
                             </div>
                              <div>
                                 <p className="text-sm text-muted-foreground">Data de Detecção</p>
-                                <p className="text-lg font-bold">{detectionDate}</p>
+                                <p className="text-lg font-bold">{date}</p>
                             </div>
                              <div>
                                 <p className="text-sm text-muted-foreground">Confiança da IA</p>
@@ -82,12 +99,12 @@ export default function FraudDetailPage({ params }: { params: { id: string } }) 
                             <CardTitle className="flex items-center gap-2"><User /> Dados do Contribuinte</CardTitle>
                         </CardHeader>
                         <CardContent className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
-                            <div><p className="text-sm text-muted-foreground">Nome/Razão Social</p><p>{fraudCaseDetails.contribuinte.nome}</p></div>
-                            <div><p className="text-sm text-muted-foreground">CPF/CNPJ</p><p>{fraudCaseDetails.contribuinte.doc}</p></div>
-                            <div><p className="text-sm text-muted-foreground">CNAE</p><p>{fraudCaseDetails.contribuinte.cnae}</p></div>
-                            <div><p className="text-sm text-muted-foreground">Endereço</p><p>{fraudCaseDetails.contribuinte.endereco}</p></div>
-                            <div><p className="text-sm text-muted-foreground">Patrimônio Declarado</p><p>{fraudCaseDetails.contribuinte.patrimonio}</p></div>
-                            <div><p className="text-sm text-muted-foreground">Renda Declarada</p><p>{fraudCaseDetails.contribuinte.renda}</p></div>
+                            <div><p className="text-sm text-muted-foreground">Nome/Razão Social</p><p>{contribuinte.nome}</p></div>
+                            <div><p className="text-sm text-muted-foreground">CPF/CNPJ</p><p>{contribuinte.doc}</p></div>
+                            <div><p className="text-sm text-muted-foreground">CNAE</p><p>{contribuinte.cnae}</p></div>
+                            <div><p className="text-sm text-muted-foreground">Endereço</p><p>{contribuinte.endereco}</p></div>
+                            <div><p className="text-sm text-muted-foreground">Patrimônio Declarado</p><p>{contribuinte.patrimonio}</p></div>
+                            <div><p className="text-sm text-muted-foreground">Renda Declarada</p><p>{contribuinte.renda}</p></div>
                         </CardContent>
                     </Card>
 
@@ -128,9 +145,9 @@ export default function FraudDetailPage({ params }: { params: { id: string } }) 
                             <CardTitle className="flex items-center gap-2"><Cpu />Análise da IA</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="flex justify-between items-center text-sm"><span>Algoritmo:</span><span className="font-semibold">{fraudCaseDetails.analiseIA.algoritmo}</span></div>
-                            <div className="flex justify-between items-center text-sm"><span>Processamento:</span><span className="font-semibold">{fraudCaseDetails.analiseIA.tempo}</span></div>
-                            <div className="flex justify-between items-center text-sm"><span>Bases Consultadas:</span><span className="font-semibold">{fraudCaseDetails.analiseIA.bases}</span></div>
+                            <div className="flex justify-between items-center text-sm"><span>Algoritmo:</span><span className="font-semibold">{analiseIA.algoritmo}</span></div>
+                            <div className="flex justify-between items-center text-sm"><span>Processamento:</span><span className="font-semibold">{analiseIA.tempo}</span></div>
+                            <div className="flex justify-between items-center text-sm"><span>Bases Consultadas:</span><span className="font-semibold">{analiseIA.bases}</span></div>
                             <div className="flex gap-2 items-center flex-wrap text-muted-foreground">
                                 <Landmark className="h-4 w-4"/>
                                 <Car className="h-4 w-4"/>
