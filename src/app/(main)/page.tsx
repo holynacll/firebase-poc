@@ -29,30 +29,30 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Alertas Críticos</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-red-500" />
+            <AlertTriangle className="h-4 w-4 text-destructive" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
             <p className="text-xs text-muted-foreground">Casos de alto risco pendentes</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Em Processamento</CardTitle>
-            <Activity className="h-4 w-4 text-blue-500" />
+            <Activity className="h-4 w-4 text-warning" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">87</div>
             <p className="text-xs text-muted-foreground">Casos e análises em andamento</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Concluídos</CardTitle>
-            <CheckCircle className="h-4 w-4 text-green-500" />
+            <CheckCircle className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">315</div>
@@ -71,7 +71,7 @@ export default function DashboardPage() {
       </div>
       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-1 shadow-lg transition-shadow duration-300 hover:shadow-xl">
           <CardHeader>
             <CardTitle>Atividade Recente da IA</CardTitle>
             <CardDescription>Últimas ações e detecções do sistema.</CardDescription>
@@ -96,19 +96,19 @@ export default function DashboardPage() {
 
         <IaDetectionsChart />
 
-        <Card>
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
           <CardHeader>
             <CardTitle>Ações Rápidas</CardTitle>
             <CardDescription>Atalhos para as tarefas mais comuns.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-2">
-            <Button variant="outline" className="justify-start gap-2">
+            <Button variant="outline" className="justify-start gap-2 transition-all hover:bg-accent/80 hover:text-accent-foreground">
               <Zap className="h-4 w-4" /> Iniciar nova análise de fraude
             </Button>
-            <Button variant="outline" className="justify-start gap-2">
+            <Button variant="outline" className="justify-start gap-2 transition-all hover:bg-accent/80 hover:text-accent-foreground">
               <FileSearch className="h-4 w-4" /> Consultar Cadastro Único
             </Button>
-            <Button variant="outline" className="justify-start gap-2">
+            <Button variant="outline" className="justify-start gap-2 transition-all hover:bg-accent/80 hover:text-accent-foreground">
               <ArrowRight className="h-4 w-4" /> Gerar relatório de arrecadação
             </Button>
           </CardContent>

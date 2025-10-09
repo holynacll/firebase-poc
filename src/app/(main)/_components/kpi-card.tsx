@@ -5,7 +5,7 @@ import { TrendingDown, TrendingUp } from "lucide-react";
 
 export function KpiCard({ kpi }: { kpi: Kpi }) {
   const isIncrease = kpi.changeType === "increase";
-  const changeColor = isIncrease ? "text-green-500" : "text-red-500";
+  const changeColor = isIncrease ? "text-success" : "text-destructive";
   const ChangeIcon = isIncrease ? TrendingUp : TrendingDown;
 
   return (

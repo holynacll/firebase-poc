@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AreaChart, Bot, Building, Check, Satellite, Upload, Wind } from "lucide-react";
+import { AreaChart, Bot, Building, Check, Satellite, Upload, Wind, Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -31,21 +31,21 @@ export default function GeorreferenciamentoPage() {
         </TabsList>
         <TabsContent value="analise">
           <div className="grid gap-6 lg:grid-cols-3">
-            <Card className="lg:col-span-1">
+            <Card className="lg:col-span-1 shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <CardHeader>
                 <CardTitle>Upload de Imagens</CardTitle>
                 <CardDescription>Envie imagens para análise e detecção de alterações.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Button variant="outline" className="w-full h-20 flex-col gap-1">
+                <Button variant="outline" className="w-full h-20 flex-col gap-1 transition-all hover:bg-accent/80 hover:text-accent-foreground">
                     <Satellite className="h-6 w-6 text-primary" />
                     <span>Imagem de Satélite</span>
                 </Button>
-                <Button variant="outline" className="w-full h-20 flex-col gap-1">
+                <Button variant="outline" className="w-full h-20 flex-col gap-1 transition-all hover:bg-accent/80 hover:text-accent-foreground">
                     <Wind className="h-6 w-6 text-primary" />
                     <span>Imagem de Drone</span>
                 </Button>
-                <Button variant="outline" className="w-full h-20 flex-col gap-1">
+                <Button variant="outline" className="w-full h-20 flex-col gap-1 transition-all hover:bg-accent/80 hover:text-accent-foreground">
                     <Upload className="h-6 w-6 text-primary" />
                     <span>Aerofotogrametria</span>
                 </Button>
@@ -57,7 +57,7 @@ export default function GeorreferenciamentoPage() {
               </CardContent>
             </Card>
 
-            <Card className="lg:col-span-2">
+            <Card className="lg:col-span-2 shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <CardHeader>
                 <CardTitle>Comparativo Visual</CardTitle>
               </CardHeader>
@@ -77,10 +77,10 @@ export default function GeorreferenciamentoPage() {
       </Tabs>
       
       {analysisState === "success" && (
-        <Card className="bg-primary/10 border-primary animate-fade-in-up">
+        <Card className="bg-primary/10 border-primary animate-fade-in-up shadow-lg">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                    <Check className="text-green-500" /> Análise Concluída com Sucesso!
+                    <Check className="text-success" /> Análise Concluída com Sucesso!
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">

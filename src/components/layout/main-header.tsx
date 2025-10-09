@@ -56,7 +56,7 @@ export default function MainHeader() {
   const pageTitle = navItems.find((item) => item.href === pathname)?.label || "Dashboard";
 
   return (
-    <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
+    <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30 bg-gradient-to-r from-background to-background/80">
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger asChild>

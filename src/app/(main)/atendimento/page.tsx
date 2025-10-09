@@ -21,7 +21,7 @@ const recentProtocols = [
 export default function AtendimentoPage() {
     return (
         <div className="grid lg:grid-cols-3 gap-6 h-[calc(100vh-10rem)]">
-            <Card className="lg:col-span-2 flex flex-col">
+            <Card className="lg:col-span-2 flex flex-col shadow-lg">
                 <CardHeader>
                     <CardTitle className="font-headline">Assistente Fiscal IA</CardTitle>
                     <CardDescription>Seu canal de atendimento virtual 24/7.</CardDescription>
@@ -58,13 +58,13 @@ export default function AtendimentoPage() {
             </Card>
 
             <div className="lg:col-span-1 space-y-6">
-                <Card>
+                <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
                     <CardHeader><CardTitle>Ações Rápidas</CardTitle></CardHeader>
                     <CardContent className="grid grid-cols-2 gap-2">
                         {quickActions.map(action => <Button key={action} variant="outline" className="h-auto text-wrap text-center">{action}</Button>)}
                     </CardContent>
                 </Card>
-                 <Card>
+                 <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
                     <CardHeader><CardTitle>Protocolos Recentes</CardTitle></CardHeader>
                     <CardContent className="space-y-3">
                         {recentProtocols.map(p => (
@@ -76,12 +76,12 @@ export default function AtendimentoPage() {
                                         <p className="text-muted-foreground">{p.subject}</p>
                                     </div>
                                 </div>
-                                <p className={p.status === 'Concluído' ? 'text-green-500' : 'text-amber-500'}>{p.status}</p>
+                                <p className={p.status === 'Concluído' ? 'text-success' : 'text-warning'}>{p.status}</p>
                             </div>
                         ))}
                     </CardContent>
                 </Card>
-                 <Card>
+                 <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
                     <CardHeader><CardTitle>Estatísticas do Atendimento</CardTitle></CardHeader>
                     <CardContent className="space-y-2">
                         <div className="flex justify-between text-sm"><span>Atendimentos hoje:</span><span className="font-bold">287</span></div>
