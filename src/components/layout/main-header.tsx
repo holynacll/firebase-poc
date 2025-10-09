@@ -32,10 +32,13 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import type { NavItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 const navItems: NavItem[] = [
   { href: "/", label: "Dashboard Fiscal", icon:LayoutDashboard, description: "Visão geral da inteligência fiscal municipal" },
@@ -65,20 +68,23 @@ export default function MainHeader() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="flex flex-col bg-card text-card-foreground border-r">
-             <div className="flex items-center gap-3 mb-4">
-                <Hexagon className="h-8 w-8 text-primary" />
-                <div>
-                  <h1 className="text-xl font-bold">SmartPrefeitura</h1>
-                  <p className="text-xs text-muted-foreground">Inteligência Fiscal</p>
+          <SheetContent side="left" className="flex flex-col bg-card text-card-foreground border-r p-0">
+             <SheetHeader className="p-4 border-b">
+                <SheetTitle className="sr-only">Navegação</SheetTitle>
+                 <div className="flex items-center gap-3">
+                    <Hexagon className="h-8 w-8 text-primary" />
+                    <div>
+                      <h1 className="text-xl font-bold">SmartPrefeitura</h1>
+                      <p className="text-xs text-muted-foreground">Inteligência Fiscal</p>
+                    </div>
                 </div>
-            </div>
-            <nav className="grid gap-2 text-lg font-medium">
+            </SheetHeader>
+            <nav className="grid gap-2 text-lg font-medium p-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-muted ${pathname === item.href ? 'bg-muted text-primary' : 'text-muted-foreground'}`}
+                  className={cn("flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-muted", pathname === item.href ? 'bg-muted text-primary' : 'text-muted-foreground' )}
                 >
                   <item.icon className="h-4 w-4" />
                   {item.label}
