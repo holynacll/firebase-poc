@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -18,7 +19,6 @@ export default function GeorreferenciamentoPage() {
     }, 2000);
   };
   
-  const baseImage = PlaceHolderImages.find(img => img.id === 'base-image');
   const currentImage = PlaceHolderImages.find(img => img.id === 'current-image');
 
   return (
@@ -63,8 +63,8 @@ export default function GeorreferenciamentoPage() {
               </CardHeader>
               <CardContent className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="font-semibold mb-2">Imagem Base (2022)</h3>
-                  {baseImage && <Image src={baseImage.imageUrl} alt="Base" width={800} height={600} className="rounded-lg aspect-video object-cover" data-ai-hint={baseImage.imageHint} />}
+                  <h3 className="font-semibold mb-2">Imagem Base (2023)</h3>
+                  <Image src="https://placehold.co/800x600/e2e8f0/64748b" alt="Base" width={800} height={600} className="rounded-lg aspect-video object-cover" data-ai-hint="placeholder image" />
                 </div>
                  <div>
                   <h3 className="font-semibold mb-2">Imagem Atual (2023)</h3>
