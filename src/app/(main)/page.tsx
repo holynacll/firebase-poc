@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in-up">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {dashboardKpis.map((kpi) => (
           <KpiCard key={kpi.label} kpi={kpi} />
