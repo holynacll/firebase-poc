@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Banknote, Building2, Car, Home, Landmark, Scale, Search, Users } from "lucide-react";
+import { Banknote, Building2, Car, HomeIcon, Landmark, Scale, Search, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ const dataSources: { title: string; description: string; icon: LucideIcon }[] = 
   { title: "DETRAN", description: "Informações sobre veículos e proprietários.", icon: Car },
   { title: "Juntas Comerciais", description: "Registros de empresas, sócios e capital social.", icon: Building2 },
   { title: "Instituições Financeiras", description: "Movimentações financeiras e extratos.", icon: Banknote },
-  { title: "Cartórios de Imóveis", description: "Registros de propriedades e transações.", icon: Home },
+  { title: "Cartórios de Imóveis", description: "Registros de propriedades e transações.", icon: HomeIcon },
   { title: "Tribunais de Justiça", description: "Processos judiciais e pendências.", icon: Scale },
   { title: "Bases de Terceiros", description: "Fontes de dados de parceiros e bureaus de crédito.", icon: Users },
   { title: "Busca Inteligente", description: "Realize uma busca customizada em todas as bases.", icon: Search },

@@ -77,7 +77,7 @@ export default function MainSidebar() {
       </nav>
 
       <div className="mt-auto">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-sidebar-accent">
+        <div className="flex items-center gap-3 p-2 rounded-lg">
           <Avatar className="h-10 w-10">
             <AvatarImage src="https://picsum.photos/seed/user/40/40" />
             <AvatarFallback>AF</AvatarFallback>

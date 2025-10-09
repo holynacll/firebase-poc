@@ -60,7 +60,7 @@ export function ArrecadacaoChart() {
                     <XAxis dataKey="month" tickLine={false} axisLine={false} />
                     <YAxis strokeWidth={0} tickFormatter={(value) => `R$${value}M`} />
                     <Tooltip content={<ChartTooltipContent />} />
-                    <Line type="monotone" dataKey="arrecadacao" stroke="hsl(var(--primary))" strokeWidth={2} dot={true} />
+                    <Line type="monotone" dataKey="arrecadacao" stroke="hsl(var(--primary))" strokeWidth={3} dot={{ r: 5, fill: 'hsl(var(--primary))' }} activeDot={{ r: 7 }}/>
                     <Line type="monotone" dataKey="previsao" stroke="hsl(var(--accent))" strokeDasharray="5 5" strokeWidth={2} />
                 </LineChart>
             </ResponsiveContainer>
@@ -84,7 +84,7 @@ export function InadimplenciaChart() {
                 <YAxis type="category" dataKey="setor" width={80} tickLine={false} axisLine={false} />
                 <XAxis type="number" hide />
                 <Tooltip cursor={{fill: 'hsl(var(--muted))'}} content={<ChartTooltipContent />} />
-                <Bar dataKey="inadimplencia" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} barSize={20} />
+                <Bar dataKey="inadimplencia" fill="hsl(var(--primary))" radius={[0, 8, 8, 0]} barSize={24} />
             </BarChart>
             </ResponsiveContainer>
         </ChartContainer>
@@ -110,8 +110,8 @@ export function IaDetectionsChart() {
                                 nameKey="name"
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={80}
-                                innerRadius={50}
+                                outerRadius={90}
+                                innerRadius={60}
                                 labelLine={false}
                                 label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
                                     const RADIAN = Math.PI / 180;
