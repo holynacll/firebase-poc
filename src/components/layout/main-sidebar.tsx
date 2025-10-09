@@ -30,17 +30,17 @@ import {
 import { Button } from "../ui/button";
 
 const navItems: NavItem[] = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert },
-  { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows },
-  { href: "/redes", label: "Análise de Redes", icon: Share2 },
-  { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map },
-  { href: "/valor-venal", label: "Valor Venal", icon: Home },
-  { href: "/digitalizacao", label: "Digitalização", icon: ScanLine },
-  { href: "/cadastro-unico", label: "Cadastro Único", icon: Users },
-  { href: "/cnae", label: "Busca por CNAE", icon: Briefcase },
-  { href: "/simulacao", label: "Simulação de Cenários", icon: Calculator },
-  { href: "/atendimento", label: "Atendimento Virtual", icon: MessageCircle },
+  { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Visão geral e indicadores chave." },
+  { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
+  { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
+  { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
+  { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map, description: "Análise de imagens e monitoramento geoespacial." },
+  { href: "/valor-venal", label: "Valor Venal", icon: Home, description: "Revisão e atualização do valor venal de imóveis." },
+  { href: "/digitalizacao", label: "Digitalização", icon: ScanLine, description: "Upload, busca e indexação de documentos." },
+  { href: "/cadastro-unico", label: "Cadastro Único", icon: Users, description: "Gerenciamento centralizado de contribuintes." },
+  { href: "/cnae", label: "Busca por CNAE", icon: Briefcase, description: "Análise e correção de CNAE de empresas." },
+  { href: "/simulacao", label: "Simulação de Cenários", icon: Calculator, description: "Simulação de impacto de reformas fiscais." },
+  { href: "/atendimento", label: "Atendimento Virtual", icon: MessageCircle, description: "Assistente fiscal IA para atendimento 24/7." },
 ];
 
 export default function MainSidebar() {

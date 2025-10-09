@@ -36,12 +36,7 @@ export default function CruzamentoPage() {
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold font-headline">Cruzamento Inteligente de Dados</h1>
-          <p className="text-muted-foreground">
-            Análise inteligente através do cruzamento de múltiplas bases de dados.
-          </p>
-        </div>
+        <div/>
         <Button size="lg" disabled={selectedSources.length === 0}>
           <Zap className="mr-2 h-4 w-4" />
           Executar Cruzamento
