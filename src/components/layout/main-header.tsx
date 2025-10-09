@@ -1,3 +1,4 @@
+
 "use client";
 import { usePathname } from "next/navigation";
 import {
@@ -16,6 +17,9 @@ import {
   Briefcase,
   Calculator,
   MessageCircle,
+  Library,
+  University,
+  FileText,
 } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -32,6 +36,7 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -51,6 +56,9 @@ const navItems: NavItem[] = [
   { href: "/cadastro-unico", label: "Cadastro Único", icon: Users, description: "Gerenciamento centralizado de contribuintes." },
   { href: "/cnae", label: "Busca por CNAE", icon: Briefcase, description: "Análise e correção de CNAE de empresas." },
   { href: "/simulacao", label: "Simulação de Cenários", icon: Calculator, description: "Simulação de impacto de reformas fiscais." },
+  { href: "/educacao-fiscal", label: "Educação Fiscal", icon: Library, description: "Portal com informações sobre a reforma tributária." },
+  { href: "/arrecadacao", label: "Arrecadação", icon: University, description: "Acompanhamento da arrecadação de tributos." },
+  { href: "/previsao-inadimplencia", label: "Previsão Inadimplência", icon: FileText, description: "Modelos preditivos de inadimplência." },
   { href: "/atendimento", label: "Atendimento Virtual", icon: MessageCircle, description: "Assistente fiscal IA para atendimento 24/7." },
 ];
 
