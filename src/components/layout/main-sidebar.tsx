@@ -47,13 +47,13 @@ export default function MainSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-sidebar text-sidebar-foreground p-4 border-r border-sidebar-border">
+    <aside className="hidden lg:flex flex-col w-60 min-h-screen bg-card p-4 border-r">
       <div className="flex items-center gap-2 mb-8">
         <Hexagon className="h-8 w-8 text-primary" />
-        <h1 className="text-xl font-bold font-headline">Fiscal Flow</h1>
+        <h1 className="text-xl font-bold">Fiscal Flow</h1>
       </div>
 
-      <nav className="flex flex-col gap-2 flex-1">
+      <nav className="flex flex-col gap-1 flex-1">
         <TooltipProvider>
           {navItems.map((item) => (
             <Tooltip key={item.href} delayDuration={100}>
@@ -61,7 +61,10 @@ export default function MainSidebar() {
                 <Link href={item.href}>
                   <Button
                     variant={pathname === item.href ? "secondary" : "ghost"}
-                    className="w-full justify-start gap-3"
+                    className={cn(
+                      "w-full justify-start gap-3",
+                       pathname === item.href ? "text-primary" : "text-muted-foreground"
+                    )}
                   >
                     <item.icon className="h-5 w-5" />
                     <span className="truncate">{item.label}</span>
@@ -84,12 +87,12 @@ export default function MainSidebar() {
           </Avatar>
           <div className="flex-1 truncate">
             <p className="font-semibold text-sm">Ana Fiscal</p>
-            <p className="text-xs text-sidebar-foreground/70">Auditora Fiscal</p>
+            <p className="text-xs text-muted-foreground">Auditora Fiscal</p>
           </div>
           <TooltipProvider>
             <Tooltip delayDuration={100}>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-sidebar-foreground/70 hover:text-sidebar-foreground">
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                   <LogOut className="h-5 w-5" />
                 </Button>
               </TooltipTrigger>

@@ -56,7 +56,7 @@ export default function MainHeader() {
   const pageTitle = navItems.find((item) => item.href === pathname)?.label || "Dashboard";
 
   return (
-    <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30 bg-gradient-to-r from-background to-background/80">
+    <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger asChild>
@@ -65,17 +65,17 @@ export default function MainHeader() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground border-r-0">
+          <SheetContent side="left" className="flex flex-col bg-card text-card-foreground border-r">
              <div className="flex items-center gap-2 mb-4">
                 <Hexagon className="h-8 w-8 text-primary" />
-                <h1 className="text-xl font-bold font-headline">Fiscal Flow</h1>
+                <h1 className="text-xl font-bold">Fiscal Flow</h1>
             </div>
             <nav className="grid gap-2 text-lg font-medium">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-sidebar-accent ${pathname === item.href ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'text-sidebar-foreground/80'}`}
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-muted ${pathname === item.href ? 'bg-muted text-primary' : 'text-muted-foreground'}`}
                 >
                   <item.icon className="h-4 w-4" />
                   {item.label}
@@ -84,7 +84,7 @@ export default function MainHeader() {
             </nav>
           </SheetContent>
         </Sheet>
-        <h1 className="text-xl font-semibold font-headline hidden md:block">{pageTitle}</h1>
+        <h1 className="text-xl font-semibold hidden md:block">{pageTitle}</h1>
       </div>
 
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">

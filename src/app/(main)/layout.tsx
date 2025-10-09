@@ -11,7 +11,7 @@ export default function MainLayout({
       <MainSidebar />
       <div className="flex flex-col flex-1">
         <MainHeader />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-background animate-fade-in-up">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-muted/30">
             {children}
         </main>
       </div>

@@ -16,22 +16,22 @@ const dataSources: { title: string; description: string; icon: LucideIcon }[] = 
 
 export default function CruzamentoPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in-up">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Cruzamento de Dados</h1>
+        <h1 className="text-3xl font-bold">Cruzamento de Dados</h1>
         <p className="text-muted-foreground">
           Selecione as bases de dados para iniciar a análise e encontrar correlações.
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {dataSources.map((source) => (
-          <Card key={source.title} className="group flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+          <Card key={source.title} className="group flex flex-col transition-transform duration-300 hover:scale-[1.03] hover:shadow-md cursor-pointer">
             <CardHeader>
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-full bg-muted group-hover:bg-primary/10 transition-colors">
                   <source.icon className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="font-headline text-lg">{source.title}</CardTitle>
+                <CardTitle className="text-lg">{source.title}</CardTitle>
               </div>
             </CardHeader>
             <CardContent className="flex-1">
