@@ -38,17 +38,17 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import type { NavItem } from "@/lib/types";
 
 const navItems: NavItem[] = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Visão geral e indicadores chave." },
-  { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
-  { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
-  { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
-  { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map, description: "Análise de imagens e monitoramento geoespacial." },
-  { href: "/valor-venal", label: "Valor Venal", icon: Home, description: "Revisão e atualização do valor venal de imóveis." },
-  { href: "/digitalizacao", label: "Digitalização", icon: ScanLine, description: "Upload, busca e indexação de documentos." },
-  { href: "/cadastro-unico", label: "Cadastro Único", icon: Users, description: "Gerenciamento centralizado de contribuintes." },
-  { href: "/cnae", label: "Busca por CNAE", icon: Briefcase, description: "Análise e correção de CNAE de empresas." },
-  { href: "/simulacao", label: "Simulação de Cenários", icon: Calculator, description: "Simulação de impacto de reformas fiscais." },
-  { href: "/atendimento", label: "Atendimento Virtual", icon: MessageCircle, description: "Assistente fiscal IA para atendimento 24/7." },
+  { href: "/", label: "Dashboard", description: "Visão geral e indicadores chave." },
+  { href: "/fraudes", label: "Análise de Fraudes", description: "Detecção e gerenciamento de fraudes." },
+  { href: "/cruzamento", label: "Cruzamento de Dados", description: "Análise inteligente de múltiplas fontes." },
+  { href: "/redes", label: "Análise de Redes", description: "Visualização de redes financeiras e societárias." },
+  { href: "/georreferenciamento", label: "Georreferenciamento", description: "Análise de imagens e monitoramento geoespacial." },
+  { href: "/valor-venal", label: "Valor Venal", description: "Revisão e atualização do valor venal de imóveis." },
+  { href: "/digitalizacao", label: "Digitalização", description: "Upload, busca e indexação de documentos." },
+  { href: "/cadastro-unico", label: "Cadastro Único", description: "Gerenciamento centralizado de contribuintes." },
+  { href: "/cnae", label: "Busca por CNAE", description: "Análise e correção de CNAE de empresas." },
+  { href: "/simulacao", label: "Simulação de Cenários", description: "Simulação de impacto de reformas fiscais." },
+  { href: "/atendimento", label: "Atendimento Virtual", description: "Assistente fiscal IA para atendimento 24/7." },
 ];
 
 export default function MainHeader() {
@@ -89,7 +89,7 @@ export default function MainHeader() {
         </Sheet>
         <div className="hidden md:flex flex-col">
             <h1 className="text-xl font-semibold leading-none">{pageInfo.label}</h1>
-            <p className="text-sm text-muted-foreground mt-1">{pageInfo.description}</p>
+            <p className="text-sm text-muted-foreground mt-1 whitespace-nowrap">{pageInfo.description}</p>
         </div>
       </div>
 
