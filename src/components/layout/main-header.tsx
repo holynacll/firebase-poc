@@ -38,7 +38,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import type { NavItem } from "@/lib/types";
 
 const navItems: NavItem[] = [
-  { href: "/", label: "Dashboard Fiscal", icon:LayoutDashboard, description: "Visão geral e indicadores chave." },
+  { href: "/", label: "Dashboard Fiscal", icon:LayoutDashboard, description: "Visão geral da inteligência fiscal municipal" },
   { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
   { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
   { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
@@ -53,7 +53,7 @@ const navItems: NavItem[] = [
 
 export default function MainHeader() {
   const pathname = usePathname();
-  const pageInfo = navItems.find((item) => item.href === pathname) || { label: "Dashboard Fiscal", description: "Visão geral e indicadores chave."};
+  const pageInfo = navItems.find((item) => item.href === pathname) || { label: "Dashboard Fiscal", description: "Visão geral da inteligência fiscal municipal"};
 
   return (
     <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
