@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AreaChart, Bot, Building, Check, Satellite, Upload, Wind, Map } from "lucide-react";
+import { AreaChart, Bot, Building, Calendar, Check, Satellite, Upload, Wind, Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -59,16 +59,23 @@ export default function GeorreferenciamentoPage() {
 
             <Card className="lg:col-span-2 shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <CardHeader>
-                <CardTitle>Comparativo Visual</CardTitle>
+                <CardTitle>Visualização e Comparação</CardTitle>
+                <CardDescription>Compare imagens temporais para identificar mudanças</CardDescription>
               </CardHeader>
               <CardContent className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h3 className="font-semibold mb-2">Imagem Base (2023)</h3>
-                  <Image src="https://placehold.co/800x600/e2e8f0/64748b" alt="Base" width={800} height={600} className="rounded-lg aspect-video object-cover" data-ai-hint="placeholder image" />
+                  <div className="rounded-lg aspect-video bg-muted/50 flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                    <Calendar className="h-10 w-10" />
+                    <span>Imagem Base 2023</span>
+                  </div>
                 </div>
                  <div>
-                  <h3 className="font-semibold mb-2">Imagem Atual (2023)</h3>
-                  {currentImage && <Image src={currentImage.imageUrl} alt="Current" width={800} height={600} className="rounded-lg aspect-video object-cover border-4 border-primary" data-ai-hint={currentImage.imageHint}/>}
+                  <h3 className="font-semibold mb-2">Imagem Atual (2024)</h3>
+                  <div className="rounded-lg aspect-video bg-muted/50 flex flex-col items-center justify-center gap-2 text-muted-foreground border-2 border-dashed border-primary">
+                    <Calendar className="h-10 w-10 text-primary" />
+                    <span className="text-primary">Imagem Atual 2024</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -82,6 +89,7 @@ export default function GeorreferenciamentoPage() {
                 <CardTitle className="flex items-center gap-2">
                     <Check className="text-success" /> Análise Concluída com Sucesso!
                 </CardTitle>
+                 <CardDescription>Foram detectadas as seguintes alterações automáticas:</CardDescription>
             </CardHeader>
             <CardContent className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="flex items-center gap-3">
