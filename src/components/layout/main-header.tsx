@@ -1,0 +1,128 @@
+"use client";
+import { usePathname } from "next/navigation";
+import {
+  Bell,
+  Hexagon,
+  Menu,
+  Search,
+  LayoutDashboard,
+  ShieldAlert,
+  GitCompareArrows,
+  Share2,
+  Map,
+  Home,
+  ScanLine,
+  Users,
+  Briefcase,
+  Calculator,
+  MessageCircle,
+} from "lucide-react";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/theme-toggle";
+import type { NavItem } from "@/lib/types";
+
+const navItems: NavItem[] = [
+  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert },
+  { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows },
+  { href: "/redes", label: "Análise de Redes", icon: Share2 },
+  { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map },
+  { href: "/valor-venal", label: "Valor Venal", icon: Home },
+  { href: "/digitalizacao", label: "Digitalização", icon: ScanLine },
+  { href: "/cadastro-unico", label: "Cadastro Único", icon: Users },
+  { href: "/cnae", label: "Busca por CNAE", icon: Briefcase },
+  { href: "/simulacao", label: "Simulação de Cenários", icon: Calculator },
+  { href: "/atendimento", label: "Atendimento Virtual", icon: MessageCircle },
+];
+
+export default function MainHeader() {
+  const pathname = usePathname();
+  const pageTitle = navItems.find((item) => item.href === pathname)?.label || "Dashboard";
+
+  return (
+    <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
+      <div className="flex items-center gap-4">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="shrink-0 lg:hidden">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground border-r-0">
+             <div className="flex items-center gap-2 mb-4">
+                <Hexagon className="h-8 w-8 text-primary" />
+                <h1 className="text-xl font-bold font-headline">Fiscal Flow</h1>
+            </div>
+            <nav className="grid gap-2 text-lg font-medium">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-sidebar-accent ${pathname === item.href ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'text-sidebar-foreground/80'}`}
+                >
+                  <item.icon className="h-4 w-4" />
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <h1 className="text-xl font-semibold font-headline hidden md:block">{pageTitle}</h1>
+      </div>
+
+      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+        <form className="ml-auto flex-1 sm:flex-initial">
+          <div className="relative">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Buscar..."
+              className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px] bg-background"
+            />
+          </div>
+        </form>
+        <ThemeToggle />
+        <Button variant="ghost" size="icon">
+          <Bell className="h-5 w-5" />
+          <span className="sr-only">Toggle notifications</span>
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <Avatar className="h-8 w-8">
+                <AvatarImage src="https://picsum.photos/seed/user/32/32" />
+                <AvatarFallback>AF</AvatarFallback>
+              </Avatar>
+              <span className="sr-only">Toggle user menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Configurações</DropdownMenuItem>
+            <DropdownMenuItem>Suporte</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Sair</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+  );
+}

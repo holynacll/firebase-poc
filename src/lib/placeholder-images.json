@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "satellite-image",
+      "description": "Satellite view of a city block",
+      "imageUrl": "https://picsum.photos/seed/geo1/800/600",
+      "imageHint": "satellite city"
+    },
+    {
+      "id": "drone-image",
+      "description": "Drone view of a construction site",
+      "imageUrl": "https://picsum.photos/seed/geo2/800/600",
+      "imageHint": "drone construction"
+    },
+    {
+      "id": "base-image",
+      "description": "Base aerial view of a residential area",
+      "imageUrl": "https://picsum.photos/seed/base1/800/600",
+      "imageHint": "aerial residential"
+    },
+    {
+      "id": "current-image",
+      "description": "Current aerial view showing new construction",
+      "imageUrl": "https://picsum.photos/seed/current1/800/600",
+      "imageHint": "aerial construction"
+    }
+  ]
 }
