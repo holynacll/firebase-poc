@@ -138,3 +138,28 @@ export const fraudCases = [
     date: "2023-10-20",
   },
 ];
+
+export const fraudCaseDetails = {
+    id: "FR001",
+    type: "Subfaturamento ITBI",
+    description: "Divergência significativa entre valor declarado e valor de mercado em transações imobiliárias",
+    risk: "Alto Risco",
+    value: "R$ 2.500.000",
+    detectionDate: "14/01/2024",
+    confidence: "97%",
+    contribuinte: {
+        nome: "Construtora Alpha Ltda",
+        doc: "12.345.678/0001-90",
+        telefone: "(11) 99999-9999",
+        email: "contato@exemplo.com.br",
+        endereco: "Rua das Empresas, 123 - Centro",
+        patrimonio: "R$ 2.500.000",
+        renda: "R$ 480.000",
+        cnae: "4711-3/02 - Comércio varejista de mercadorias em geral"
+    },
+    analiseIA: {
+        algoritmo: "DeepFraud AI v2.1",
+        tempo: "3.2 segundos",
+        bases: 5
+    }
+};

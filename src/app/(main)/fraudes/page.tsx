@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fraudCases } from "@/lib/mock-data";
 import { AnomalyDetector } from "./_components/anomaly-detector";
+import Link from "next/link";
 
 function FraudCaseRow({ caseItem }: { caseItem: (typeof fraudCases)[0] }) {
   const getRiskBadgeVariant = (risk: string) => {
@@ -38,7 +39,9 @@ function FraudCaseRow({ caseItem }: { caseItem: (typeof fraudCases)[0] }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
-            <DropdownMenuItem>Ver Detalhes</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href={`/fraudes/${caseItem.id}`}>Ver Detalhes</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Atribuir Analista</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600">Arquivar</DropdownMenuItem>
@@ -54,17 +57,35 @@ export default function FraudesPage() {
     <div className="grid flex-1 items-start gap-4">
       <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            <Card>
-                <CardHeader className="pb-2"><CardTitle>Alto Risco</CardTitle></CardHeader>
-                <CardContent><p className="text-2xl font-bold">12</p></CardContent>
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-destructive/10 border-destructive/20">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium text-destructive">Alertas Críticos</CardTitle>
+                    <AlertTriangle className="h-4 w-4 text-destructive" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold text-destructive">12</div>
+                    <p className="text-xs text-muted-foreground">Casos de alto risco pendentes</p>
+                </CardContent>
             </Card>
-             <Card>
-                <CardHeader className="pb-2"><CardTitle>Em Análise</CardTitle></CardHeader>
-                <CardContent><p className="text-2xl font-bold">34</p></CardContent>
+             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/10 border-warning/20">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium text-warning">Em Processamento</CardTitle>
+                    <Activity className="h-4 w-4 text-warning" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold text-warning">87</div>
+                    <p className="text-xs text-muted-foreground">Casos e análises em andamento</p>
+                </CardContent>
             </Card>
-             <Card>
-                <CardHeader className="pb-2"><CardTitle>Resolvidos</CardTitle></CardHeader>
-                <CardContent><p className="text-2xl font-bold">102</p></CardContent>
+             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-success/10 border-success/20">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium text-success">Concluídos</CardTitle>
+                    <CheckCircle className="h-4 w-4 text-success" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold text-success">315</div>
+                    <p className="text-xs text-muted-foreground">Casos resolvidos neste mês</p>
+                </CardContent>
             </Card>
              <Card>
                 <CardHeader className="pb-2"><CardTitle>Valor Recuperado</CardTitle></CardHeader>
