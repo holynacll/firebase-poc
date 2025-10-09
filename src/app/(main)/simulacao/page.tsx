@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -25,7 +24,6 @@ import {
   Target,
   Clock,
   ThumbsUp,
-  List,
 } from 'lucide-react';
 import { useState } from 'react';
 import {
@@ -43,7 +41,6 @@ import {
   ChartContainer,
   ChartTooltipContent,
 } from '@/components/ui/chart';
-import { cn } from '@/lib/utils';
 
 const kpiData = {
   conservador: [
@@ -135,18 +132,15 @@ const chartData = [
 ];
 
 export default function SimulacaoPage() {
-  const [scenario, setScenario] = useState<keyof typeof kpiData | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<keyof typeof kpiData | null>(null);
+  const [simulatedScenario, setSimulatedScenario] = useState<keyof typeof kpiData | null>(null);
   
   const handleSimulate = () => {
-    // In a real app, this would trigger calculations. Here we just use the selected scenario.
-    if (!scenario) {
-      // Maybe show a toast to select a scenario first
-      return;
-    }
+    setSimulatedScenario(selectedScenario);
   }
 
-  const selectedKpis = scenario ? kpiData[scenario] : [];
-  const selectedAnalysis = scenario ? analysisData[scenario] : null;
+  const selectedKpis = simulatedScenario ? kpiData[simulatedScenario] : [];
+  const selectedAnalysis = simulatedScenario ? analysisData[simulatedScenario] : null;
 
   return (
     <div className="space-y-6">
@@ -155,7 +149,7 @@ export default function SimulacaoPage() {
                 <h1 className="text-2xl font-bold font-headline">Simulação de Cenários Pós-Reforma</h1>
                 <p className="text-muted-foreground">Modelagem preditiva dos impactos da reforma tributária</p>
             </div>
-            <Button size="lg" onClick={handleSimulate}>Executar Simulação</Button>
+            <Button size="lg" onClick={handleSimulate} disabled={!selectedScenario}>Executar Simulação</Button>
         </div>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
@@ -166,7 +160,7 @@ export default function SimulacaoPage() {
             <CardContent className="grid grid-cols-2 gap-x-6 gap-y-4">
               <div className="space-y-2 col-span-2">
                 <Label htmlFor="tipo-reforma">Tipo de Cenário</Label>
-                <Select onValueChange={(value) => setScenario(value as keyof typeof kpiData)}>
+                <Select onValueChange={(value) => setSelectedScenario(value as keyof typeof kpiData)}>
                   <SelectTrigger id="tipo-reforma">
                     <SelectValue placeholder="Selecione o tipo" />
                   </SelectTrigger>
@@ -224,7 +218,7 @@ export default function SimulacaoPage() {
         </div>
       </div>
 
-      {scenario && (
+      {simulatedScenario && (
           <div className="space-y-6 animate-fade-in-up">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {selectedKpis.map(kpi => (
