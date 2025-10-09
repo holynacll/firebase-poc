@@ -66,9 +66,12 @@ export default function MainHeader() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col bg-card text-card-foreground border-r">
-             <div className="flex items-center gap-2 mb-4">
+             <div className="flex items-center gap-3 mb-4">
                 <Hexagon className="h-8 w-8 text-primary" />
-                <h1 className="text-xl font-bold">Fiscal Flow</h1>
+                <div>
+                  <h1 className="text-xl font-bold">FiscalIA</h1>
+                  <p className="text-xs text-muted-foreground">Inteligência Fiscal</p>
+                </div>
             </div>
             <nav className="grid gap-2 text-lg font-medium">
               {navItems.map((item) => (

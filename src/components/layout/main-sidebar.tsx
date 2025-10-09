@@ -48,9 +48,12 @@ export default function MainSidebar() {
 
   return (
     <aside className="hidden lg:flex flex-col w-60 min-h-screen bg-card p-4 border-r">
-      <div className="flex items-center gap-2 mb-8">
+      <div className="flex items-center gap-3 mb-8">
         <Hexagon className="h-8 w-8 text-primary" />
-        <h1 className="text-xl font-bold">Fiscal Flow</h1>
+        <div>
+          <h1 className="text-xl font-bold">FiscalIA</h1>
+          <p className="text-xs text-muted-foreground">Inteligência Fiscal</p>
+        </div>
       </div>
 
       <nav className="flex flex-col gap-1 flex-1">
