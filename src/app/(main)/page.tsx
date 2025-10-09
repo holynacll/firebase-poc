@@ -29,34 +29,34 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-destructive/5 border-destructive/20 text-destructive-foreground">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Alertas Críticos</CardTitle>
+            <CardTitle className="text-sm font-medium text-destructive">Alertas Críticos</CardTitle>
             <AlertTriangle className="h-4 w-4 text-destructive" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">Casos de alto risco pendentes</p>
+            <div className="text-2xl font-bold text-destructive">12</div>
+            <p className="text-xs text-destructive/80">Casos de alto risco pendentes</p>
           </CardContent>
         </Card>
-        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/5 border-warning/20 text-warning-foreground">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Em Processamento</CardTitle>
+            <CardTitle className="text-sm font-medium text-warning">Em Processamento</CardTitle>
             <Activity className="h-4 w-4 text-warning" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">87</div>
-            <p className="text-xs text-muted-foreground">Casos e análises em andamento</p>
+            <div className="text-2xl font-bold text-warning">87</div>
+            <p className="text-xs text-warning/80">Casos e análises em andamento</p>
           </CardContent>
         </Card>
-        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
+        <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-success/5 border-success/20 text-success-foreground">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Concluídos</CardTitle>
+            <CardTitle className="text-sm font-medium text-success">Concluídos</CardTitle>
             <CheckCircle className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">315</div>
-            <p className="text-xs text-muted-foreground">Casos resolvidos neste mês</p>
+            <div className="text-2xl font-bold text-success">315</div>
+            <p className="text-xs text-success/80">Casos resolvidos neste mês</p>
           </CardContent>
         </Card>
       </div>
