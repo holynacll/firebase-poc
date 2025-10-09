@@ -30,7 +30,7 @@ import {
 import { Button } from "../ui/button";
 
 const navItems: NavItem[] = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Visão geral e indicadores chave." },
+  { href: "/", label: "Dashboard Fiscal", icon: LayoutDashboard, description: "Visão geral e indicadores chave." },
   { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
   { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
   { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
