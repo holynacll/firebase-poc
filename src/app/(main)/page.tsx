@@ -37,7 +37,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-destructive">12</div>
-            <p className="text-xs text-destructive/80">Casos de alto risco pendentes</p>
+            <p className="text-xs text-muted-foreground">Casos de alto risco pendentes</p>
           </CardContent>
         </Card>
         <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/5 border-warning/20">
@@ -47,7 +47,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-warning">87</div>
-            <p className="text-xs text-warning/80">Casos e análises em andamento</p>
+            <p className="text-xs text-muted-foreground">Casos e análises em andamento</p>
           </CardContent>
         </Card>
         <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-success/5 border-success/20">
@@ -57,7 +57,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-success">315</div>
-            <p className="text-xs text-success/80">Casos resolvidos neste mês</p>
+            <p className="text-xs text-muted-foreground">Casos resolvidos neste mês</p>
           </CardContent>
         </Card>
       </div>
