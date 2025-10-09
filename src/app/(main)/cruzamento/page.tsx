@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Banknote, Building2, Car, Landmark, Scale, Search, Users } from "lucide-react";
+import { Banknote, Building2, Car, Home, Landmark, Scale, Search, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
