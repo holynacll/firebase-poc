@@ -1,10 +1,14 @@
+
+'use client';
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import { Bot, FileText, Send, User, CheckCircle, Clock, Search, List, BarChart, Percent, Smile, Users } from "lucide-react";
+import { Bot, FileText, Send, User, CheckCircle, Clock, Search, Percent } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 const quickActions = [
     { label: "Consultar Débitos", icon: Search },
@@ -35,8 +39,50 @@ const getStatusBadgeVariant = (status: string) => {
     }
 }
 
+type Message = {
+    from: 'user' | 'bot';
+    text: string;
+    time: string;
+};
+
+const mockResponses = [
+    "Para consultar débitos, por favor, acesse nosso portal do contribuinte e utilize seu CPF ou CNPJ.",
+    "A segunda via do IPTU pode ser emitida diretamente em nosso site, na seção 'Tributos Municipais'. Você precisará do número de inscrição do imóvel.",
+    "Oferecemos opções de parcelamento para débitos em atraso. Posso te guiar pelo processo ou você pode iniciá-lo na área de 'Serviços Online'."
+];
 
 export default function AtendimentoPage() {
+    const [messages, setMessages] = useState<Message[]>([
+        { from: 'bot', text: 'Olá! Sou o assistente virtual da Secretaria da Fazenda. Como posso ajudá-lo hoje?', time: '08:36' },
+    ]);
+    const [inputValue, setInputValue] = useState('');
+    const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+    const getTime = () => new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+    const handleSendMessage = () => {
+        if (!inputValue.trim()) return;
+
+        const userMessage: Message = { from: 'user', text: inputValue, time: getTime() };
+        setMessages(prev => [...prev, userMessage]);
+        setInputValue('');
+
+        setTimeout(() => {
+            const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+            const botMessage: Message = { from: 'bot', text: randomResponse, time: getTime() };
+            setMessages(prev => [...prev, botMessage]);
+        }, 1200);
+    };
+
+    useEffect(() => {
+        if (scrollAreaRef.current) {
+            scrollAreaRef.current.scrollTo({
+                top: scrollAreaRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    }, [messages]);
+    
     return (
         <div className="space-y-4">
             <header className="flex justify-between items-center">
@@ -58,54 +104,37 @@ export default function AtendimentoPage() {
                         </div>
                     </CardHeader>
                     <CardContent className="flex-1 flex flex-col">
-                        <ScrollArea className="flex-1 -mx-6 px-6">
+                        <ScrollArea className="flex-1 -mx-6 px-6" ref={scrollAreaRef}>
                             <div className="space-y-6 pr-4">
-                                {/* Chat messages */}
-                                <div className="flex items-start gap-3">
-                                    <Avatar className="w-8 h-8 border-2 border-primary">
-                                        <AvatarFallback><Bot className="w-4 h-4" /></AvatarFallback>
-                                    </Avatar>
-                                    <div className="bg-muted p-3 rounded-lg rounded-tl-none max-w-[75%]">
-                                        <p className="font-semibold text-sm">Assistente Fiscal IA</p>
-                                        <p className="text-sm">Olá! Sou o assistente virtual da Secretaria da Fazenda. Como posso ajudá-lo hoje?</p>
-                                        <p className="text-xs text-muted-foreground mt-1">08:36</p>
+                                {messages.map((msg, index) => (
+                                    <div key={index} className={`flex items-start gap-3 ${msg.from === 'user' ? 'justify-end' : ''}`}>
+                                        {msg.from === 'bot' && (
+                                            <Avatar className="w-8 h-8 border-2 border-primary">
+                                                <AvatarFallback><Bot className="w-4 h-4" /></AvatarFallback>
+                                            </Avatar>
+                                        )}
+                                        <div className={`${msg.from === 'bot' ? 'bg-muted rounded-tl-none' : 'bg-primary text-primary-foreground rounded-tr-none'} p-3 rounded-lg max-w-[75%]`}>
+                                            <p className="font-semibold text-sm">{msg.from === 'bot' ? 'Assistente Fiscal IA' : 'Você'}</p>
+                                            <p className="text-sm">{msg.text}</p>
+                                            <p className={`text-xs mt-1 ${msg.from === 'bot' ? 'text-muted-foreground' : 'text-primary-foreground/70 text-right'}`}>{msg.time}</p>
+                                        </div>
+                                        {msg.from === 'user' && (
+                                             <Avatar className="w-8 h-8">
+                                                <AvatarFallback><User className="w-4 h-4"/></AvatarFallback>
+                                            </Avatar>
+                                        )}
                                     </div>
-                                </div>
-                                <div className="flex items-start gap-3 justify-end">
-                                    <div className="bg-primary text-primary-foreground p-3 rounded-lg rounded-tr-none max-w-[75%]">
-                                        <p className="font-semibold text-sm">Você</p>
-                                        <p className="text-sm">teste 1</p>
-                                        <p className="text-xs text-primary-foreground/70 mt-1 text-right">08:50</p>
-                                    </div>
-                                     <Avatar className="w-8 h-8">
-                                        <AvatarFallback><User className="w-4 h-4"/></AvatarFallback>
-                                    </Avatar>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <Avatar className="w-8 h-8 border-2 border-primary">
-                                        <AvatarFallback><Bot className="w-4 h-4" /></AvatarFallback>
-                                    </Avatar>
-                                    <div className="bg-muted p-3 rounded-lg rounded-tl-none max-w-[75%]">
-                                        <p className="font-semibold text-sm">Assistente Fiscal IA</p>
-                                        <p className="text-sm">Para consultar débitos, você pode usar seu CPF/CNPJ no sistema online.</p>
-                                         <p className="text-xs text-muted-foreground mt-1">08:51</p>
-                                    </div>
-                                </div>
-                                 <div className="flex items-start gap-3 justify-end">
-                                    <div className="bg-primary text-primary-foreground p-3 rounded-lg rounded-tr-none max-w-[75%]">
-                                        <p className="font-semibold text-sm">Você</p>
-                                        <p className="text-sm">teste 2</p>
-                                        <p className="text-xs text-primary-foreground/70 mt-1 text-right">08:51</p>
-                                    </div>
-                                     <Avatar className="w-8 h-8">
-                                        <AvatarFallback><User className="w-4 h-4"/></AvatarFallback>
-                                    </Avatar>
-                                </div>
+                                ))}
                             </div>
                         </ScrollArea>
                         <div className="mt-4 flex items-center gap-2">
-                            <Input placeholder="Digite sua mensagem..." />
-                            <Button size="icon"><Send className="h-4 w-4"/></Button>
+                            <Input 
+                                placeholder="Digite sua mensagem..." 
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                            />
+                            <Button size="icon" onClick={handleSendMessage} disabled={!inputValue.trim()}><Send className="h-4 w-4"/></Button>
                         </div>
                     </CardContent>
                 </Card>
