@@ -1,6 +1,6 @@
 
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Bell,
   Hexagon,
@@ -21,7 +21,6 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -40,6 +39,8 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import type { NavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/firebase";
+import { signOut } from "firebase/auth";
 
 const navItems: NavItem[] = [
   { href: "/", label: "Dashboard Fiscal", icon:LayoutDashboard, description: "Visão geral da inteligência fiscal municipal" },
@@ -57,7 +58,19 @@ const navItems: NavItem[] = [
 
 export default function MainHeader() {
   const pathname = usePathname();
+  const router = useRouter();
+  const auth = useAuth();
   const pageInfo = navItems.find((item) => item.href === pathname) || { label: "Dashboard Fiscal", description: "Visão geral da inteligência fiscal municipal"};
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push('/login');
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
 
   return (
     <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
@@ -123,7 +136,7 @@ export default function MainHeader() {
             <DropdownMenuItem>Configurações</DropdownMenuItem>
             <DropdownMenuItem>Suporte</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Sair</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>Sair</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
