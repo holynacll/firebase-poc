@@ -22,6 +22,7 @@ Este é um projeto Next.js que serve como uma Prova de Conceito (PoC) para um Si
 - **Linguagem**: TypeScript
 - **Estilização**: Tailwind CSS
 - **Componentes UI**: ShadCN UI
+- **Autenticação**: Firebase Authentication
 - **Inteligência Artificial**: Genkit
 
 ---
@@ -41,19 +42,48 @@ Este é um projeto Next.js que serve como uma Prova de Conceito (PoC) para um Si
    ```
 
 2. **Crie o arquivo de variáveis de ambiente:**
-   Copie o arquivo `.env.example` (se existir) para um novo arquivo chamado `.env` e preencha as variáveis necessárias, como as chaves de API para serviços de IA.
+   Copie o conteúdo de `.env.example` (se existir) para um novo arquivo `.env`. Preencha as variáveis de ambiente necessárias.
+
    ```bash
    cp .env.example .env
    ```
-   Se `.env.example` não existir, crie um arquivo `.env` vazio. Você precisará adicionar sua `GEMINI_API_KEY` para as funcionalidades de GenAI.
+   Se `.env.example` não existir, crie um arquivo `.env` e adicione as seguintes variáveis:
+
    ```
+   # Chave de API para o GenAI Studio (Gemini)
    GEMINI_API_KEY=SUA_API_KEY_AQUI
+
+   # Configurações da Service Account do Firebase (para o script de criação de usuário)
+   # Necessário fazer o download do arquivo JSON no console do Firebase
+   # (Configurações do Projeto > Contas de serviço > Gerar nova chave privada)
+   GOOGLE_APPLICATION_CREDENTIALS=./caminho/para/sua-service-account.json
    ```
 
 3. **Instale as dependências:**
    ```bash
    npm install
    ```
+
+---
+
+## Criando um Usuário Administrador
+
+A criação de novas contas é feita através de um script para garantir a segurança.
+
+1. **Configure a Service Account**:
+   - Vá ao seu Console do Firebase.
+   - Navegue para "Configurações do Projeto" > "Contas de serviço".
+   - Clique em "Gerar nova chave privada" e salve o arquivo JSON no seu projeto (por exemplo, na raiz).
+   - Atualize a variável `GOOGLE_APPLICATION_CREDENTIALS` no seu arquivo `.env` com o caminho para este arquivo.
+
+2. **Execute o script de criação de usuário:**
+   - Abra o arquivo `scripts/create-user.mjs`.
+   - Modifique as variáveis `email` e `password` com as credenciais desejadas.
+   - Execute o script no terminal:
+     ```bash
+     node scripts/create-user.mjs
+     ```
+   - O novo usuário será criado no Firebase Authentication.
 
 ---
 
@@ -86,7 +116,7 @@ Para executar a aplicação em modo de desenvolvimento usando Docker, o `docker-
    docker-compose up --build
    ```
 
-A aplicação estará disponível em `http://localhost:9002`. O Hot-reloading estará ativado, e as alterações no código serão refletidas automaticamente.
+A aplicação estará disponível em `http://localhost:9002`. O Hot-reloading estará ativado.
 
 ---
 
