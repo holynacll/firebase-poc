@@ -1,0 +1,135 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user account for the Fiscal Flow application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity."
+        },
+        "username": {
+          "type": "string",
+          "description": "The username used to log in."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The user's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The user's last name."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "Timestamp indicating the user's last login.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "email",
+        "firstName",
+        "lastName",
+        "createdAt"
+      ]
+    },
+    "Session": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Session",
+      "type": "object",
+      "description": "Represents a user session for authentication and access control.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Session entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User associated with this session. (Relationship: User 1:N Session)"
+        },
+        "token": {
+          "type": "string",
+          "description": "Session token for authentication."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the session was created.",
+          "format": "date-time"
+        },
+        "expiresAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the session expires.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "token",
+        "createdAt",
+        "expiresAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Collection to store user data. The userId is a parameter that identifies the user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user.  It matches the user's authentication UID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/sessions/{sessionId}",
+        "definition": {
+          "entityName": "Session",
+          "schema": {
+            "$ref": "#/backend/entities/Session"
+          },
+          "description": "Subcollection to store user sessions. Each session belongs to a specific user, identified by userId. The sessionId is a parameter that identifies the session.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user. It matches the user's authentication UID."
+            },
+            {
+              "name": "sessionId",
+              "description": "The unique identifier for the session."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to secure the dashboard access using path-based ownership. Each user has their own set of sessions, ensuring that only authenticated users can access the dashboard. The `users/{userId}/sessions/{sessionId}` path enforces this ownership, as only the user with the matching `userId` can read or write sessions under their path. Since no data needs to be shared, and only authentication is required, a collaborative Membership Map pattern is unnecessary. This design eliminates the need for `get()` calls in security rules, because rules will just enforce the user id being the same as the request authentication id, thus enabling atomic operations."
+  }
+}

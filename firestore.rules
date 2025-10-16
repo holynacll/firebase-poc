@@ -1,0 +1,86 @@
+/**
+ * @fileoverview Firestore Security Rules for Fiscal Flow application.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model, ensuring that users can only
+ * access their own data. All data is nested under /users/{userId}, with further
+ * subcollections for sessions.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profile information.  The {userId} MUST match
+ *   the authenticated user's UID.
+ * - /users/{userId}/sessions/{sessionId}: Stores session data for each user.
+ *   Again, the {userId} MUST match the authenticated user's UID.
+ *
+ * Key Security Decisions:
+ * - Listing users is disallowed.
+ * - Users can only create, read, update, and delete their own data.
+ *
+ * Denormalization for Authorization:
+ *  - The user's UID is used as the document ID for the /users/{userId} document,
+ *    allowing simple `isOwner()` checks based on the path.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Enforces user-level access control for user profiles.
+     * @path /users/{userId}
+     * @allow (create) Signed-in user creates their own profile with matching UID.
+     * @allow (get) Signed-in user reads their own profile.
+     * @allow (update) Signed-in user updates their own profile.
+     * @allow (delete) Signed-in user deletes their own profile.
+     * @deny (create) Signed-in user attempts to create a profile with a mismatched UID.
+     * @deny (get) Signed-in user attempts to read another user's profile.
+     * @deny (update) Signed-in user attempts to update another user's profile.
+     * @deny (delete) Signed-in user attempts to delete another user's profile.
+     * @deny (list) Listing all users is not allowed.
+     * @principle Enforces document ownership for all operations and prevents listing of user documents.
+     */
+    match /users/{userId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if false;
+
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces user-level access control for user sessions.
+     * @path /users/{userId}/sessions/{sessionId}
+     * @allow (create) Signed-in user creates a session under their own profile.
+     * @allow (get) Signed-in user reads a session under their own profile.
+     * @allow (update) Signed-in user updates a session under their own profile.
+     * @allow (delete) Signed-in user deletes a session under their own profile.
+     * @deny (create) Signed-in user attempts to create a session under another user's profile.
+     * @deny (get) Signed-in user attempts to read a session under another user's profile.
+     * @deny (update) Signed-in user attempts to update a session under another user's profile.
+     * @deny (delete) Signed-in user attempts to delete a session under another user's profile.
+     * @principle Enforces document ownership for all operations under a user's profile.
+     */
+    match /users/{userId}/sessions/{sessionId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
