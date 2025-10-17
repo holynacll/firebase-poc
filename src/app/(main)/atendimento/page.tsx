@@ -100,7 +100,7 @@ export default function AtendimentoPage() {
                     <CardHeader className="flex flex-row items-center justify-between">
                         <div>
                             <CardTitle className="font-headline">Assistente Fiscal IA</CardTitle>
-                            <CardDescription className="flex items-center gap-1.5 text-success"><div className="w-2 h-2 rounded-full bg-success"/>Online</CardDescription>
+                            <CardDescription className="flex items-center gap-1.5 text-success"><span className="w-2 h-2 rounded-full bg-success"/>Online</CardDescription>
                         </div>
                     </CardHeader>
                     <CardContent className="flex-1 flex flex-col">
