@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -28,6 +29,15 @@ export default function LoginPage() {
   const { toast } = useToast();
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      toast({
+        variant: 'destructive',
+        title: 'Campos obrigatórios',
+        description: 'Por favor, preencha o email e a senha.',
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -38,10 +48,14 @@ export default function LoginPage() {
       router.push('/');
     } catch (error: any) {
       console.error(error);
+      let description = 'Ocorreu um erro ao fazer login. Verifique suas credenciais.';
+      if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        description = 'Email ou senha inválidos.';
+      }
       toast({
         variant: 'destructive',
         title: 'Erro de Login',
-        description: error.message || 'Ocorreu um erro ao fazer login.',
+        description,
       });
     } finally {
       setIsLoading(false);
@@ -70,6 +84,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLogin()}
             />
           </div>
           <div className="grid gap-2">
@@ -80,6 +95,7 @@ export default function LoginPage() {
               required
               value={password}
               onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLogin()}
             />
           </div>
         </CardContent>
