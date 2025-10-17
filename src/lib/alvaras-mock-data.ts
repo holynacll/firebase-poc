@@ -3,7 +3,7 @@ export type AlvaraCase = {
     id: string;
     protocolo: string;
     solicitante: string;
-    status: "Em Análise" | "Pendente" | "Aprovado" | "Reprovado";
+    status: "Pendente" | "Aprovado" | "Reprovado";
     localidade: string;
     valor: string;
     data: string;
@@ -15,7 +15,7 @@ export const alvaraCases: AlvaraCase[] = [
       protocolo: "152025023226",
       solicitante: "Construtora Solidez Ltda",
       status: "Aprovado",
-      localidade: "Salvador/BA",
+      localidade: "Camaçari/BA",
       valor: "R$ 1.200.000,00",
       data: "2024-05-10",
     },
@@ -32,8 +32,8 @@ export const alvaraCases: AlvaraCase[] = [
       id: "ALV-003",
       protocolo: "152025023228",
       solicitante: "Shopping Center Plaza",
-      status: "Em Análise",
-      localidade: "Feira de Santana/BA",
+      status: "Pendente",
+      localidade: "Camaçari/BA",
       valor: "R$ 15.800.000,00",
       data: "2024-05-15",
     },
@@ -42,7 +42,7 @@ export const alvaraCases: AlvaraCase[] = [
       protocolo: "152025023229",
       solicitante: "Maria Oliveira",
       status: "Pendente",
-      localidade: "Salvador/BA",
+      localidade: "Camaçari/BA",
       valor: "R$ 550.000,00",
       data: "2024-05-18",
     },

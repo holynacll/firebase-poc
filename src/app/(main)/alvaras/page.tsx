@@ -87,8 +87,8 @@ export default function AlvarasPage() {
                 <ThumbsUp className="h-4 w-4 text-success" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold text-success">60%</div>
-                <p className="text-xs text-muted-foreground">3 de 5 alvarás aprovados</p>
+                <div className="text-2xl font-bold text-success">20%</div>
+                <p className="text-xs text-muted-foreground">1 de 5 alvarás aprovados</p>
                 </CardContent>
             </Card>
             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/10 border-warning/20">
@@ -97,18 +97,18 @@ export default function AlvarasPage() {
                 <Percent className="h-4 w-4 text-warning" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold text-warning">40%</div>
-                <p className="text-xs text-muted-foreground">2 de 5 casos pendentes</p>
+                <div className="text-2xl font-bold text-warning">60%</div>
+                <p className="text-xs text-muted-foreground">3 de 5 casos pendentes</p>
                 </CardContent>
             </Card>
             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-destructive/10 border-destructive/20">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-destructive">Taxa de Rejeição</CardTitle>
+                <CardTitle className="text-sm font-medium text-destructive">Taxa de Reprovação</CardTitle>
                 <XCircle className="h-4 w-4 text-destructive" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold text-destructive">0%</div>
-                <p className="text-xs text-muted-foreground">Nenhum alvará rejeitado</p>
+                <div className="text-2xl font-bold text-destructive">20%</div>
+                <p className="text-xs text-muted-foreground">1 de 5 alvarás reprovados</p>
                 </CardContent>
             </Card>
             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
@@ -117,7 +117,7 @@ export default function AlvarasPage() {
                 <Clock className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold">26,5 dias</div>
+                <div className="text-xl font-bold">1 minuto e 20 segundos</div>
                 <p className="text-xs text-muted-foreground">Média para todo o processo</p>
                 </CardContent>
             </Card>
