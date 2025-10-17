@@ -35,7 +35,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
 import { alvaraCases, type AlvaraCase } from '@/lib/alvaras-mock-data';
 
 
@@ -46,6 +45,8 @@ function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
         return "default";
       case "Reprovado":
         return "destructive";
+      case "Em Análise":
+        return "outline";
       case "Pendente":
         return "secondary";
       default:
@@ -132,9 +133,9 @@ export default function AlvarasPage() {
   return (
     <div className="space-y-6">
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            <Card>
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-success/10 border-success/20">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Taxa de Aprovação</CardTitle>
+                <CardTitle className="text-sm font-medium text-success">Taxa de Aprovação</CardTitle>
                 <ThumbsUp className="h-4 w-4 text-success" />
                 </CardHeader>
                 <CardContent>
@@ -142,7 +143,7 @@ export default function AlvarasPage() {
                 <p className="text-xs text-muted-foreground">3 de 5 alvarás aprovados</p>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Tempo Médio de Aprovação</CardTitle>
                 <Clock className="h-4 w-4 text-muted-foreground" />
@@ -152,9 +153,9 @@ export default function AlvarasPage() {
                 <p className="text-xs text-muted-foreground">Média para todo o processo</p>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-destructive/10 border-destructive/20">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Taxa de Rejeição</CardTitle>
+                <CardTitle className="text-sm font-medium text-destructive">Taxa de Rejeição</CardTitle>
                 <XCircle className="h-4 w-4 text-destructive" />
                 </CardHeader>
                 <CardContent>
@@ -162,9 +163,9 @@ export default function AlvarasPage() {
                 <p className="text-xs text-muted-foreground">Nenhum alvará rejeitado</p>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/10 border-warning/20">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Alvarás Pendentes</CardTitle>
+                <CardTitle className="text-sm font-medium text-warning">Alvarás Pendentes</CardTitle>
                 <Percent className="h-4 w-4 text-warning" />
                 </CardHeader>
                 <CardContent>
