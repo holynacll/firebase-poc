@@ -80,7 +80,7 @@ function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem asChild>
-              <a href="/some-report.pdf" download>Ver Relatório</a>
+              <a href={`/alvaras/${caseItem.id}`}>Ver Relatório</a>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-destructive">Arquivar</DropdownMenuItem>
@@ -143,14 +143,14 @@ export default function AlvarasPage() {
                 <p className="text-xs text-muted-foreground">3 de 5 alvarás aprovados</p>
                 </CardContent>
             </Card>
-            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/10 border-warning/20">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Tempo Médio de Aprovação</CardTitle>
-                <Clock className="h-4 w-4 text-muted-foreground" />
+                <CardTitle className="text-sm font-medium text-warning">Alvarás Pendentes</CardTitle>
+                <Percent className="h-4 w-4 text-warning" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold">26,5 dias</div>
-                <p className="text-xs text-muted-foreground">Média para todo o processo</p>
+                <div className="text-2xl font-bold text-warning">40%</div>
+                <p className="text-xs text-muted-foreground">2 de 5 casos pendentes</p>
                 </CardContent>
             </Card>
             <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-destructive/10 border-destructive/20">
@@ -163,14 +163,14 @@ export default function AlvarasPage() {
                 <p className="text-xs text-muted-foreground">Nenhum alvará rejeitado</p>
                 </CardContent>
             </Card>
-            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl bg-warning/10 border-warning/20">
+            <Card className="shadow-lg transition-shadow duration-300 hover:shadow-xl">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-warning">Alvarás Pendentes</CardTitle>
-                <Percent className="h-4 w-4 text-warning" />
+                <CardTitle className="text-sm font-medium">Tempo Médio de Aprovação</CardTitle>
+                <Clock className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                <div className="text-2xl font-bold text-warning">40%</div>
-                <p className="text-xs text-muted-foreground">2 de 5 casos pendentes</p>
+                <div className="text-2xl font-bold">26,5 dias</div>
+                <p className="text-xs text-muted-foreground">Média para todo o processo</p>
                 </CardContent>
             </Card>
         </div>
