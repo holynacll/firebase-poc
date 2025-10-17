@@ -5,7 +5,6 @@ import {
   Bell,
   Hexagon,
   Menu,
-  Search,
   LayoutDashboard,
   ShieldAlert,
   GitCompareArrows,
@@ -17,6 +16,7 @@ import {
   Briefcase,
   Calculator,
   MessageCircle,
+  FileCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -45,6 +45,7 @@ import { signOut } from "firebase/auth";
 const navItems: NavItem[] = [
   { href: "/", label: "Dashboard Fiscal", icon:LayoutDashboard, description: "Visão geral da inteligência fiscal municipal" },
   { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
+  { href: "/alvaras", label: "Análise de Alvarás", icon: FileCheck, description: "Monitoramento da emissão de alvarás de habite-se." },
   { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
   { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
   { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map, description: "Análise de imagens e monitoramento geoespacial." },
@@ -60,7 +61,7 @@ export default function MainHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const auth = useAuth();
-  const pageInfo = navItems.find((item) => item.href === pathname) || { label: "Dashboard Fiscal", description: "Visão geral da inteligência fiscal municipal"};
+  const pageInfo = navItems.find((item) => pathname.startsWith(item.href) && (item.href === '/' || item.href.length > 1)) || { label: "SmartPrefeitura", description: "Inteligência Fiscal para Cidades do Futuro"};
 
   const handleLogout = async () => {
     try {
@@ -98,7 +99,7 @@ export default function MainHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={cn("flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-muted", pathname === item.href ? 'bg-muted text-primary' : 'text-muted-foreground' )}
+                  className={cn("flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-muted", pathname.startsWith(item.href) && (item.href === '/' || item.href.length > 1) ? 'bg-muted text-primary' : 'text-muted-foreground' )}
                 >
                   <item.icon className="h-4 w-4" />
                   {item.label}

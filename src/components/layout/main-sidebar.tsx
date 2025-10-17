@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   Briefcase,
   Calculator,
+  FileCheck,
   GitCompareArrows,
   Hexagon,
   Home,
@@ -33,6 +34,7 @@ import { Button } from "../ui/button";
 const navItems: NavItem[] = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Visão geral da inteligência fiscal municipal" },
   { href: "/fraudes", label: "Análise de Fraudes", icon: ShieldAlert, description: "Detecção e gerenciamento de fraudes." },
+  { href: "/alvaras", label: "Análise de Alvarás", icon: FileCheck, description: "Monitoramento da emissão de alvarás de habite-se." },
   { href: "/cruzamento", label: "Cruzamento de Dados", icon: GitCompareArrows, description: "Análise inteligente de múltiplas fontes." },
   { href: "/redes", label: "Análise de Redes", icon: Share2, description: "Visualização de redes financeiras e societárias." },
   { href: "/georreferenciamento", label: "Georreferenciamento", icon: Map, description: "Análise de imagens e monitoramento geoespacial." },
@@ -65,10 +67,10 @@ export default function MainSidebar() {
               <TooltipTrigger asChild>
                 <Link href={item.href}>
                   <Button
-                    variant={pathname === item.href ? "secondary" : "ghost"}
+                    variant={pathname.startsWith(item.href) && (item.href === '/' || item.href.length > 1) ? "secondary" : "ghost"}
                     className={cn(
                       "w-full justify-start gap-3",
-                       pathname === item.href ? "" : "text-muted-foreground"
+                       pathname.startsWith(item.href) && (item.href === '/' || item.href.length > 1) ? "" : "text-muted-foreground"
                     )}
                   >
                     <item.icon className="h-5 w-5" />
