@@ -133,9 +133,6 @@ export default function AlvarasPage() {
     <div className="space-y-6">
         <div>
             <h1 className="text-2xl font-bold font-headline">Análise de Alvarás de Habite-se</h1>
-            <p className="text-muted-foreground max-w-4xl">
-                Módulo para acompanhamento e análise dos processos de emissão de alvarás de habite-se, permitindo visualizar o status das solicitações, identificar pendências e garantir maior eficiência e transparência na regularização de empreendimentos.
-            </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
             <Card>
