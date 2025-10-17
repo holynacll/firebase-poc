@@ -82,7 +82,7 @@ function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
               <a href="/some-report.pdf" download>Ver Relatório</a>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Arquivar</DropdownMenuItem>
+            <DropdownMenuItem className="text-destructive">Arquivar</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </TableCell>
@@ -134,7 +134,7 @@ export default function AlvarasPage() {
         <div>
             <h1 className="text-2xl font-bold font-headline">Análise de Alvarás de Habite-se</h1>
             <p className="text-muted-foreground max-w-4xl">
-                Este módulo tem como objetivo centralizar, acompanhar e analisar os processos de emissão de alvarás de habite-se, identificando pendências, riscos e gargalos em tempo real. A plataforma permite visualizar o status de cada solicitação, avaliar o grau de conformidade com os requisitos legais e técnicos, e garantir maior eficiência, transparência e segurança na regularização de empreendimentos.
+                Módulo para acompanhamento e análise dos processos de emissão de alvarás de habite-se, permitindo visualizar o status das solicitações, identificar pendências e garantir maior eficiência e transparência na regularização de empreendimentos.
             </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
