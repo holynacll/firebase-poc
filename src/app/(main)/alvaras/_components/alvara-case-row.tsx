@@ -35,13 +35,13 @@ export function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
   };
 
   const handleReportClick = () => {
-    if (caseItem.protocolo === "152025023226") {
-      window.open("/reports/processo_152025023226.pdf", "_blank");
-    } else if (caseItem.protocolo === "152025023227") {
-      window.open("/reports/processo_152025023227.pdf", "_blank");
-    } else if (caseItem.status === "Em Análise") {
-      alert("O processo ainda está em análise.");
-    } else if (caseItem.status === "Pendente") {
+    if (caseItem.status === "Aprovado") {
+      window.open("/reports/processo_152025023226.pdf", "_blank")
+    }
+    else if (caseItem.status === "Reprovado") {
+      window.open("/reports/processo_152025023227.pdf", "_blank")
+    }
+    else if (caseItem.status === "Pendente") {
       alert("O processo ainda está pendente.");
     }
   };
