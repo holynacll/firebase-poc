@@ -36,14 +36,18 @@ export function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
 
   const handleReportClick = () => {
     if (caseItem.status === "Aprovado") {
-      window.open("/reports/processo_152025023226.pdf", "_blank")
+      window.open("/docs/152025023226/report.pdf", "_blank")
     }
     else if (caseItem.status === "Reprovado") {
-      window.open("/reports/processo_152025023227.pdf", "_blank")
+      window.open("/docs/152025023227/report.pdf", "_blank")
     }
     else if (caseItem.status === "Pendente") {
       alert("O processo ainda está pendente.");
     }
+  };
+
+  const handleDocOriginalClick = () => {
+    window.open("/docs/152025023226/processo.pdf", "_blank")
   };
 
   return (
@@ -72,6 +76,7 @@ export function AlvaraCaseRow({ caseItem }: { caseItem: AlvaraCase }) {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem onClick={handleReportClick}>Ver Relatório</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDocOriginalClick}>Ver Documento Original</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-destructive">Arquivar</DropdownMenuItem>
           </DropdownMenuContent>
